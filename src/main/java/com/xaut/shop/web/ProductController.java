@@ -5,6 +5,8 @@ import com.xaut.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/products")
 public class ProductController {
@@ -28,5 +30,10 @@ public class ProductController {
     @GetMapping(value = "/{id}")
     public Product getProduct(@PathVariable int id) {
         return productService.getProduct(id);
+    }
+
+    @GetMapping
+    public List<Product> getProducts() {
+        return productService.getProducts();
     }
 }
