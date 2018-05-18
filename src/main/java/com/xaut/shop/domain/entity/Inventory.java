@@ -12,7 +12,6 @@ public class Inventory {
     private int lockedCount;
 
     @OneToOne
-    @JoinColumn(name = "productId")
     private Product product;
 
     public int getId() {

@@ -1,9 +1,9 @@
 CREATE TABLE LogisticsRecord(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    deliveryMan VARCHAR(20) NOT NULL,
-    outboundTime DATETIME,
-    signedTime DATETIME,
-    logisticsStatus VARCHAR(10),
-    orderItemId INT NOT NULL,
-    constraint `orderItemLogistics_id_for` FOREIGN KEY (`orderItemId`) REFERENCES `OrderItem` (`id`)
+    delivery_man VARCHAR(20) NOT NULL,
+    outbound_time DATETIME,
+    signed_time DATETIME,
+    logistics_status VARCHAR(10),
+    order_id INT NOT NULL,
+    constraint `order_id_for_b` FOREIGN KEY (`order_id`) REFERENCES `Order` (`id`)
 ) engine=InnoDB DEFAULT CHARSET = utf8;

@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-public class OrderItem {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -17,9 +17,9 @@ public class OrderItem {
     private Date paidTime;
     private Date withdrawnTime;
 
-    @OneToMany(mappedBy = "orderItem")
+    @OneToMany(mappedBy = "order")
     private Set<OrderProduct> orderProducts;
-    @OneToOne(mappedBy = "orderItem")
+    @OneToOne(mappedBy = "order")
     private LogisticsRecord logisticsRecord;
 
     public int getId() {

@@ -14,10 +14,8 @@ public class OrderProduct {
     private int purchaseCount;
 
     @ManyToOne
-    @JoinColumn(name = "orderItemId")
-    private OrderItem orderItem;
+    private Order order;
     @OneToOne
-    @JoinColumn(name = "productId")
     private Product product;
 
     public int getId() {
@@ -60,12 +58,12 @@ public class OrderProduct {
         this.purchaseCount = purchaseCount;
     }
 
-    public OrderItem getOrderItem() {
-        return orderItem;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Product getProduct() {

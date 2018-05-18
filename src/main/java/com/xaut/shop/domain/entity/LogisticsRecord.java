@@ -15,8 +15,7 @@ public class LogisticsRecord {
     private String logisticsStatus;
 
     @OneToOne
-    @JoinColumn(name = "orderItemId")
-    private OrderItem orderItem;
+    private Order order;
 
     public int getId() {
         return id;
@@ -58,11 +57,11 @@ public class LogisticsRecord {
         this.logisticsStatus = logisticsStatus;
     }
 
-    public OrderItem getOrderItem() {
-        return orderItem;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
