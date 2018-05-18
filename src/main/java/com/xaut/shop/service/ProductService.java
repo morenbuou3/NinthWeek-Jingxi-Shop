@@ -12,4 +12,8 @@ public interface ProductService {
     Product getProduct(int id);
 
     List<Product> getProducts();
+
+    List<Product> getProductsByName(String name);
+
+    List<Product> getProductsLikeNameAndDescription(String name, String description);
 }

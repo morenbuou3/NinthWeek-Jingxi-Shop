@@ -36,4 +36,14 @@ public class ProductController {
     public List<Product> getProducts() {
         return productService.getProducts();
     }
+
+    @GetMapping(params = "name")
+    public List<Product> getProductByName(@RequestParam String name) {
+        return productService.getProductsByName(name);
+    }
+
+    @GetMapping(params = {"name", "description"})
+    public List<Product> getProductLikeNameAndDescription(@RequestParam String name, @RequestParam String description) {
+        return productService.getProductsLikeNameAndDescription(name, description);
+    }
 }
