@@ -10,7 +10,7 @@ public class OrderProduct {
 
     private String productName;
     private String productDescription;
-    private float purchasePrice;
+    private double purchasePrice;
     private int purchaseCount;
     private int productId;
 
@@ -41,11 +41,11 @@ public class OrderProduct {
         this.productDescription = productDescription;
     }
 
-    public float getPurchasePrice() {
+    public double getPurchasePrice() {
         return purchasePrice;
     }
 
-    public void setPurchasePrice(float purchasePrice) {
+    public void setPurchasePrice(double purchasePrice) {
         this.purchasePrice = purchasePrice;
     }
 

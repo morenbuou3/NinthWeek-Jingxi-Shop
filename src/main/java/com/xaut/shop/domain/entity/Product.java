@@ -13,7 +13,7 @@ public class Product {
 
     private String name;
     private String description;
-    private float price;
+    private double price;
 
     @OneToOne(mappedBy = "product")
     private Inventory inventory;
@@ -42,11 +42,11 @@ public class Product {
         this.description = description;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
