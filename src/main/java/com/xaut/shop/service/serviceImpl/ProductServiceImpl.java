@@ -20,11 +20,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int createProduct(Product product) {
-        int id = productRepo.save(product).getId();
+        product = productRepo.save(product);
         Inventory inventory = new Inventory();
         inventory.setProduct(product);
         inventoryRepo.save(inventory);
-        return id;
+        return product.getId();
     }
 
     @Override

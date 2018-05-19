@@ -21,9 +21,10 @@ public class ProductController {
     }
 
     @PutMapping(value = "/{id}")
-    public void updateProduct(@RequestBody Product product, @PathVariable int id) {
+    public String updateProduct(@RequestBody Product product, @PathVariable int id) {
         product.setId(id);
         productService.updateProduct(product);
+        return "redirect:/products/" + id;
     }
 
     @GetMapping(value = "/{id}")
