@@ -1,6 +1,8 @@
 package com.xaut.shop.service.serviceImpl;
 
+import com.xaut.shop.domain.entity.Inventory;
 import com.xaut.shop.domain.entity.Product;
+import com.xaut.shop.domain.repo.InventoryRepo;
 import com.xaut.shop.domain.repo.ProductRepo;
 import com.xaut.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepo productRepo;
+    @Autowired
+    private InventoryRepo inventoryRepo;
 
     @Override
     public int createProduct(Product product) {
-        return productRepo.save(product).getId();
+        int id = productRepo.save(product).getId();
+        Inventory inventory = new Inventory();
+        inventory.setProduct(product);
+        inventoryRepo.save(inventory);
+        return id;
     }
 
     @Override

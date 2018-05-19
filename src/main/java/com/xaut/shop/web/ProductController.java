@@ -17,7 +17,6 @@ public class ProductController {
     @PostMapping
     public String createProduct(@RequestBody Product product) {
         int id = productService.createProduct(product);
-
         return "redirect:/products/" + id;
     }
 

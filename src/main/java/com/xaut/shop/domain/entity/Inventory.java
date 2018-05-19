@@ -1,5 +1,7 @@
 package com.xaut.shop.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class Inventory {
     private int lockedCount;
 
     @OneToOne
+    @JsonIgnore
     private Product product;
 
     public int getId() {
