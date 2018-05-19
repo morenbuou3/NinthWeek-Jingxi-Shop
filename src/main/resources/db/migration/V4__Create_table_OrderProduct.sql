@@ -7,6 +7,5 @@ CREATE TABLE OrderProduct(
 
     order_id INT NOT NULL,
     product_id INT NOT NULL,
-    constraint `order_id_for` FOREIGN KEY (`order_id`) REFERENCES `Order` (`id`),
-    constraint `product_id_for_b` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`)
+    constraint `order_id_for` FOREIGN KEY (`order_id`) REFERENCES `Order` (`id`)
 ) engine=InnoDB DEFAULT CHARSET = utf8;

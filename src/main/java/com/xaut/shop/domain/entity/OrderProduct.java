@@ -12,11 +12,10 @@ public class OrderProduct {
     private String productDescription;
     private float purchasePrice;
     private int purchaseCount;
+    private int productId;
 
     @ManyToOne
     private Order order;
-    @OneToOne
-    private Product product;
 
     public int getId() {
         return id;
@@ -66,11 +65,11 @@ public class OrderProduct {
         this.order = order;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }
