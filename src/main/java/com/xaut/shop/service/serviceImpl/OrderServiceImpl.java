@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -74,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
                 int lockCount = item.getInventory().getLockedCount();
                 item.getInventory().setCount(count - n.getPurchaseCount());
                 item.getInventory().setLockedCount(lockCount + n.getPurchaseCount());
-                productRepo.save(item);
+                productRepo.saveAndFlush(item);
             }
         }
     }
@@ -106,5 +107,19 @@ public class OrderServiceImpl implements OrderService {
             e.printStackTrace();
         }
         return orderRepo.save(order);
+    }
+
+    @Override
+    @Transactional
+    public void unlockProductCount(int id) {
+        Set<OrderProduct> orderProducts = orderRepo.getOne(id).getPurchaseItemList();
+        for (OrderProduct n : orderProducts) {
+            Product item = productRepo.findById(n.getProductId());
+            int count = item.getInventory().getCount();
+            int lockCount = item.getInventory().getLockedCount();
+            item.getInventory().setCount(count + n.getPurchaseCount());
+            item.getInventory().setLockedCount(lockCount - n.getPurchaseCount());
+            productRepo.saveAndFlush(item);
+        }
     }
 }

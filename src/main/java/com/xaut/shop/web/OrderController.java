@@ -27,7 +27,11 @@ public class OrderController {
 
     @PutMapping(value = "/{id}", params = "orderStatus")
     public Order paidOrder(@PathVariable int id, @RequestParam String orderStatus) {
-        if ("paid".equals(orderStatus)) return orderService.paidOrder(id, orderStatus);
-        else return orderService.withdrawnOrder(id, orderStatus);
+        if ("paid".equals(orderStatus)) {
+            return orderService.paidOrder(id, orderStatus);
+        } else {
+            orderService.unlockProductCount(id);
+            return orderService.withdrawnOrder(id, orderStatus);
+        }
     }
 }
