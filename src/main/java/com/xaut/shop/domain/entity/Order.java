@@ -1,5 +1,6 @@
 package com.xaut.shop.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -26,6 +27,10 @@ public class Order {
     private Set<OrderProduct> purchaseItemList;
     @OneToOne(mappedBy = "order")
     private LogisticsRecord logisticsRecord;
+
+    @ManyToOne
+    @JsonIgnore
+    private User user;
 
     public int getId() {
         return id;
@@ -97,5 +102,13 @@ public class Order {
 
     public void setLogisticsRecord(LogisticsRecord logisticsRecord) {
         this.logisticsRecord = logisticsRecord;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
