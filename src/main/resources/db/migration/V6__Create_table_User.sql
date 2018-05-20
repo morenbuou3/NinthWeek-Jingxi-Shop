@@ -2,5 +2,5 @@ CREATE TABLE `User`(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_name VARCHAR(20) NOT NULL,
     password VARCHAR(20) NOT NULL,
-    type VARCHAR(10) NOT NULL,
+    type VARCHAR(10) NOT NULL
 ) engine=InnoDB DEFAULT CHARSET = utf8;

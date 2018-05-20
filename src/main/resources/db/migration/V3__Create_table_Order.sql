@@ -5,7 +5,5 @@ CREATE TABLE `Order`(
     create_time DATE,
     finish_time DATE,
     paid_time DATE,
-    withdrawn_time DATE,
-    user_id INT NOT NULL,
-    constraint `user_id_for` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`)
+    withdrawn_time DATE
 ) engine=InnoDB DEFAULT CHARSET = utf8;
