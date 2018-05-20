@@ -1,10 +1,14 @@
 package com.xaut.shop.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+@Table(name = "`order`")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +22,8 @@ public class Order {
     private Date withdrawnTime;
 
     @OneToMany(mappedBy = "order")
-    private Set<OrderProduct> orderProducts;
+    @OrderBy(value = "id ASC")
+    private Set<OrderProduct> purchaseItemList;
     @OneToOne(mappedBy = "order")
     private LogisticsRecord logisticsRecord;
 
@@ -78,11 +83,19 @@ public class Order {
         this.withdrawnTime = withdrawnTime;
     }
 
-    public Set<OrderProduct> getOrderProducts() {
-        return orderProducts;
+    public Set<OrderProduct> getPurchaseItemList() {
+        return purchaseItemList;
     }
 
-    public void setOrderProducts(Set<OrderProduct> orderProducts) {
-        this.orderProducts = orderProducts;
+    public void setPurchaseItemList(Set<OrderProduct> purchaseItemList) {
+        this.purchaseItemList = purchaseItemList;
+    }
+
+    public LogisticsRecord getLogisticsRecord() {
+        return logisticsRecord;
+    }
+
+    public void setLogisticsRecord(LogisticsRecord logisticsRecord) {
+        this.logisticsRecord = logisticsRecord;
     }
 }

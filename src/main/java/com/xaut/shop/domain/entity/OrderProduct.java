@@ -1,8 +1,11 @@
 package com.xaut.shop.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
+@Table(name = "orderproduct")
 public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +18,7 @@ public class OrderProduct {
     private int productId;
 
     @ManyToOne
+    @JsonIgnore
     private Order order;
 
     public int getId() {
