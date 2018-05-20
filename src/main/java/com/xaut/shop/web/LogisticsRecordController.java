@@ -16,4 +16,11 @@ public class LogisticsRecordController {
         return logisticsRecordService.getLogisticRecordByOrderId(id);
     }
 
+    @PutMapping(value = "/{id}/orders/{orderId}")
+    public LogisticsRecord shippingLogistics(@PathVariable int id, @PathVariable int orderId,
+                                             @RequestParam String logisticsStatus) {
+        if ("shipping".equals(logisticsStatus)) return logisticsRecordService.shippingLogistics(id, orderId);
+        else return logisticsRecordService.signedLogistics(id, orderId);
+    }
+
 }

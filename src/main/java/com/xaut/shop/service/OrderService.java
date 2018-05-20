@@ -17,4 +17,6 @@ public interface OrderService {
     Order withdrawnOrder(int id, String orderStatus);
 
     void unlockProductCount(int id);
+
+    void finishOrder(int orderId);
 }

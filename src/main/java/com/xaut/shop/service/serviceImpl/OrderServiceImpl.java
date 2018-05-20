@@ -122,4 +122,18 @@ public class OrderServiceImpl implements OrderService {
             productRepo.saveAndFlush(item);
         }
     }
+
+    @Override
+    @Transactional
+    public void finishOrder(int orderId) {
+        Order order = orderRepo.getOne(orderId);
+        order.setStatus("finished");
+        Set<OrderProduct> orderProducts = order.getPurchaseItemList();
+        for (OrderProduct n : orderProducts) {
+            Product item = productRepo.findById(n.getProductId());
+            int lockCount = item.getInventory().getLockedCount();
+            item.getInventory().setLockedCount(lockCount - n.getPurchaseCount());
+            productRepo.saveAndFlush(item);
+        }
+    }
 }

@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LogisticsRecordRepo extends JpaRepository<LogisticsRecord, Integer> {
     LogisticsRecord findByOrder_id(int id);
+
+    LogisticsRecord findByIdAndOrder_id(int id, int orderId);
 }
