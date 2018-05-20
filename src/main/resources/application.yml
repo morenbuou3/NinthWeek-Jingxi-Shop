@@ -8,3 +8,6 @@ spring:
     driveClassName: com.mysql.jdbc.Driver
   jpa:
     show-sql: true
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
