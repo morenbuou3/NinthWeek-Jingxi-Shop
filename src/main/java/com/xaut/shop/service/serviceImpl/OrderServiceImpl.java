@@ -1,8 +1,10 @@
 package com.xaut.shop.service.serviceImpl;
 
+import com.xaut.shop.domain.entity.LogisticsRecord;
 import com.xaut.shop.domain.entity.Order;
 import com.xaut.shop.domain.entity.OrderProduct;
 import com.xaut.shop.domain.entity.Product;
+import com.xaut.shop.domain.repo.LogisticsRecordRepo;
 import com.xaut.shop.domain.repo.OrderProductRepo;
 import com.xaut.shop.domain.repo.OrderRepo;
 import com.xaut.shop.domain.repo.ProductRepo;
@@ -24,6 +26,8 @@ public class OrderServiceImpl implements OrderService {
     private ProductRepo productRepo;
     @Autowired
     private OrderProductRepo orderProductRepo;
+    @Autowired
+    private LogisticsRecordRepo logisticsRecordRepo;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -84,7 +88,12 @@ public class OrderServiceImpl implements OrderService {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return orderRepo.save(order);
+        orderRepo.save(order);
+        LogisticsRecord logisticsRecord = new LogisticsRecord();
+        logisticsRecord.setLogisticsStatus("readyToShip");
+        logisticsRecord.setOrder(order);
+        logisticsRecordRepo.save(logisticsRecord);
+        return order;
     }
 
     @Override
