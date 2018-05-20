@@ -14,4 +14,6 @@ public interface OrderService {
     void lockProductCount(List<OrderProduct> orderProducts) throws Exception;
 
     Order paidOrder(int id, String orderStatus);
+
+    Order withdrawnOrder(int id, String orderStatus);
 }

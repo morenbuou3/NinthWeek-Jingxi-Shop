@@ -86,4 +86,16 @@ public class OrderServiceImpl implements OrderService {
         }
         return orderRepo.save(order);
     }
+
+    @Override
+    public Order withdrawnOrder(int id, String orderStatus) {
+        Order order = orderRepo.getOne(id);
+        order.setStatus(orderStatus);
+        try {
+            order.setWithdrawnTime(dateFormat.parse(dateFormat.format(new Date())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return orderRepo.save(order);
+    }
 }
