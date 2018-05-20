@@ -6,7 +6,7 @@ import com.xaut.shop.domain.entity.OrderProduct;
 import java.util.List;
 
 public interface OrderService {
-    Order createOrder(List<OrderProduct> orderProducts);
+    Order createOrder(List<OrderProduct> orderProducts, int userId);
 
     Order getOrderById(int id);
 
@@ -19,4 +19,6 @@ public interface OrderService {
     void unlockProductCount(int id);
 
     void finishOrder(int orderId);
+
+    List<Order> getOrders(int orderId);
 }

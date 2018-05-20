@@ -6,7 +6,10 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.LockModeType;
+import java.util.List;
 
 @Repository
 public interface OrderRepo extends JpaRepository<Order, Integer> {
+    List<Order> findByUser_Id(int userId);
+
 }

@@ -6,6 +6,7 @@ import com.xaut.shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -15,9 +16,11 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public Order createOrder(@RequestBody List<OrderProduct> orderProducts) throws Exception {
+    public Order createOrder(@RequestBody List<OrderProduct> orderProducts, HttpSession session) throws Exception {
         orderService.lockProductCount(orderProducts);
-        return orderService.createOrder(orderProducts);
+        /*int userId = (int) session.getAttribute("userId");*/
+        int userId = 1;
+        return orderService.createOrder(orderProducts, userId);
     }
 
     @GetMapping(value = "/{id}")
@@ -33,5 +36,10 @@ public class OrderController {
             orderService.unlockProductCount(id);
             return orderService.withdrawnOrder(id, orderStatus);
         }
+    }
+
+    @GetMapping(params = "userId")
+    public List<Order> getOrders(@RequestParam int userId) {
+        return orderService.getOrders(userId);
     }
 }

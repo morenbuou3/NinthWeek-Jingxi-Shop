@@ -1,13 +1,7 @@
 package com.xaut.shop.service.serviceImpl;
 
-import com.xaut.shop.domain.entity.LogisticsRecord;
-import com.xaut.shop.domain.entity.Order;
-import com.xaut.shop.domain.entity.OrderProduct;
-import com.xaut.shop.domain.entity.Product;
-import com.xaut.shop.domain.repo.LogisticsRecordRepo;
-import com.xaut.shop.domain.repo.OrderProductRepo;
-import com.xaut.shop.domain.repo.OrderRepo;
-import com.xaut.shop.domain.repo.ProductRepo;
+import com.xaut.shop.domain.entity.*;
+import com.xaut.shop.domain.repo.*;
 import com.xaut.shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,12 +23,16 @@ public class OrderServiceImpl implements OrderService {
     private OrderProductRepo orderProductRepo;
     @Autowired
     private LogisticsRecordRepo logisticsRecordRepo;
+    @Autowired
+    private UserRepo userRepo;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
-    public Order createOrder(List<OrderProduct> orderProducts) {
+    public Order createOrder(List<OrderProduct> orderProducts, int userId) {
         Order order = new Order();
+        User user = userRepo.getOne(userId);
+        order.setUser(user);
         order.setStatus("unPaid");
         try {
             order.setCreateTime(dateFormat.parse(dateFormat.format(new Date())));
@@ -135,5 +133,10 @@ public class OrderServiceImpl implements OrderService {
             item.getInventory().setLockedCount(lockCount - n.getPurchaseCount());
             productRepo.saveAndFlush(item);
         }
+    }
+
+    @Override
+    public List<Order> getOrders(int userId) {
+        return orderRepo.findByUser_Id(userId);
     }
 }

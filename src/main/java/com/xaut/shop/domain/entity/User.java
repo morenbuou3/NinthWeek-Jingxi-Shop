@@ -49,4 +49,8 @@ public class User {
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
+
+    public int getId() {
+        return id;
+    }
 }
