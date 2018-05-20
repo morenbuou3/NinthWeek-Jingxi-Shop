@@ -9,6 +9,4 @@ import javax.persistence.LockModeType;
 
 @Repository
 public interface OrderRepo extends JpaRepository<Order, Integer> {
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
-    Order findById(int id);
 }

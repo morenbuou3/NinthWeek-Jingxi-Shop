@@ -24,4 +24,9 @@ public class OrderController {
     public Order getOrderById(@PathVariable int id) {
         return orderService.getOrderById(id);
     }
+
+    @PutMapping(value = "/{id}", params = "orderStatus")
+    public Order paidOrder(@PathVariable int id, @RequestParam String orderStatus) {
+        return orderService.paidOrder(id, orderStatus);
+    }
 }

@@ -62,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void lockProductCount(List<OrderProduct> orderProducts) throws Exception {
         for (OrderProduct n : orderProducts) {
-            Product item = productRepo.getOne(n.getProductId());
+            Product item = productRepo.findById(n.getProductId());
             if (item.getInventory().getCount() < n.getPurchaseCount()) {
                 throw new RuntimeException(item.getName() + ":库存数量不够");
             } else {
@@ -73,5 +73,17 @@ public class OrderServiceImpl implements OrderService {
                 productRepo.save(item);
             }
         }
+    }
+
+    @Override
+    public Order paidOrder(int id, String orderStatus) {
+        Order order = orderRepo.getOne(id);
+        order.setStatus(orderStatus);
+        try {
+            order.setPaidTime(dateFormat.parse(dateFormat.format(new Date())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return orderRepo.save(order);
     }
 }
