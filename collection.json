@@ -180,7 +180,7 @@
 						"url": {
 							"raw": "http://{{IP}}:{{port}}/products?name=方便面",
 							"protocol": "http",
-							"IP": [
+							"host": [
 								"{{IP}}"
 							],
 							"port": "{{port}}",
@@ -234,7 +234,7 @@
 						"url": {
 							"raw": "http://{{IP}}:{{port}}/products?name=方便面&description=师",
 							"protocol": "http",
-							"IP": [
+							"host": [
 								"{{IP}}"
 							],
 							"port": "{{port}}",
@@ -319,7 +319,7 @@
 						"url": {
 							"raw": "http://{{IP}}:{{port}}/orders/1?orderStatus=paid",
 							"protocol": "http",
-							"IP": [
+							"host": [
 								"{{IP}}"
 							],
 							"port": "{{port}}",
@@ -364,7 +364,7 @@
 						"url": {
 							"raw": "http://{{IP}}:{{port}}/orders/5?orderStatus=withdrawn",
 							"protocol": "http",
-							"IP": [
+							"host": [
 								"{{IP}}"
 							],
 							"port": "{{port}}",
@@ -464,7 +464,7 @@
 						"url": {
 							"raw": "http://{{IP}}:{{port}}/orders?userId=1",
 							"protocol": "http",
-							"IP": [
+							"host": [
 								"{{IP}}"
 							],
 							"port": "{{port}}",
@@ -557,7 +557,7 @@
 						"url": {
 							"raw": "http://{{IP}}:{{port}}/logisticsRecords/1/orders/1?logisticsStatus=shipping",
 							"protocol": "http",
-							"IP": [
+							"host": [
 								"{{IP}}"
 							],
 							"port": "{{port}}",
@@ -604,7 +604,7 @@
 						"url": {
 							"raw": "http://{{IP}}:{{port}}/logisticsRecords/1/orders/1?logisticsStatus=signed",
 							"protocol": "http",
-							"IP": [
+							"host": [
 								"{{IP}}"
 							],
 							"port": "{{port}}",
