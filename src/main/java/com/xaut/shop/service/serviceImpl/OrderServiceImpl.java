@@ -91,6 +91,7 @@ public class OrderServiceImpl implements OrderService {
         LogisticsRecord logisticsRecord = new LogisticsRecord();
         logisticsRecord.setLogisticsStatus("readyToShip");
         logisticsRecord.setOrder(order);
+        logisticsRecord.setDeliveryMan("李师傅");
         logisticsRecordRepo.save(logisticsRecord);
         return order;
     }

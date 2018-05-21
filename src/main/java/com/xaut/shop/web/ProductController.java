@@ -3,8 +3,10 @@ package com.xaut.shop.web;
 import com.xaut.shop.domain.entity.Product;
 import com.xaut.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -15,16 +17,18 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    public String createProduct(@RequestBody Product product) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createProduct(@RequestBody Product product, HttpServletResponse response) {
         int id = productService.createProduct(product);
-        return "redirect:/products/" + id;
+        response.setHeader("location", "/products/" + id);
     }
 
     @PutMapping(value = "/{id}")
-    public String updateProduct(@RequestBody Product product, @PathVariable int id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateProduct(@RequestBody Product product, @PathVariable int id, HttpServletResponse response) {
         product.setId(id);
         productService.updateProduct(product);
-        return "redirect:/products/" + id;
+        response.setHeader("location", "/products/" + id);
     }
 
     @GetMapping(value = "/{id}")

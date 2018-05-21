@@ -22,13 +22,13 @@ public class LogisticsRecordServiceImpl implements LogisticsRecordService {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
-    public LogisticsRecord getLogisticRecordByOrderId(int id) {
-        return logisticsRecordRepo.findByOrder_id(id);
+    public LogisticsRecord getLogisticRecordById(int id) {
+        return logisticsRecordRepo.getOne(id);
     }
 
     @Override
     public LogisticsRecord shippingLogistics(int id, int orderId) {
-        LogisticsRecord logisticsRecord = logisticsRecordRepo.findByIdAndOrder_id(id, orderId);
+        LogisticsRecord logisticsRecord = logisticsRecordRepo.getOne(id);
         logisticsRecord.setLogisticsStatus("shipping");
         try {
             logisticsRecord.setOutboundTime(dateFormat.parse(dateFormat.format(new Date())));
@@ -40,7 +40,7 @@ public class LogisticsRecordServiceImpl implements LogisticsRecordService {
 
     @Override
     public LogisticsRecord signedLogistics(int id, int orderId) {
-        LogisticsRecord logisticsRecord = logisticsRecordRepo.findByIdAndOrder_id(id, orderId);
+        LogisticsRecord logisticsRecord = logisticsRecordRepo.getOne(id);
         logisticsRecord.setLogisticsStatus("signed");
         try {
             logisticsRecord.setSignedTime(dateFormat.parse(dateFormat.format(new Date())));
