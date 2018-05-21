@@ -1,10 +1,14 @@
 package com.xaut.shop.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "logisticsrecord")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class LogisticsRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +20,7 @@ public class LogisticsRecord {
     private String logisticsStatus;
 
     @OneToOne
+    @JsonIgnore
     private Order order;
 
     public int getId() {

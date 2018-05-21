@@ -14,10 +14,6 @@ public class User {
     private String password;
     private String type;
 
-    @OneToMany(mappedBy = "user")
-    @OrderBy(value = "id ASC")
-    private Set<Order> orders;
-
     public String getUserName() {
         return userName;
     }
@@ -40,14 +36,6 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
     }
 
     public int getId() {

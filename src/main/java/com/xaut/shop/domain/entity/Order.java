@@ -21,6 +21,7 @@ public class Order {
     private Date finishTime;
     private Date paidTime;
     private Date withdrawnTime;
+    private int userId;
 
     @OneToMany(mappedBy = "order")
     @OrderBy(value = "id ASC")
@@ -28,16 +29,8 @@ public class Order {
     @OneToOne(mappedBy = "order")
     private LogisticsRecord logisticsRecord;
 
-    @ManyToOne
-    @JsonIgnore
-    private User user;
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public double getTotalPrice() {
@@ -104,11 +97,11 @@ public class Order {
         this.logisticsRecord = logisticsRecord;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

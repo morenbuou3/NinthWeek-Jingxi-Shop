@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     public Order createOrder(List<OrderProduct> orderProducts, int userId) {
         Order order = new Order();
         User user = userRepo.getOne(userId);
-        order.setUser(user);
+        order.setUserId(userId);
         order.setStatus("unPaid");
         try {
             order.setCreateTime(dateFormat.parse(dateFormat.format(new Date())));
@@ -138,6 +138,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getOrders(int userId) {
-        return orderRepo.findByUser_Id(userId);
+        return orderRepo.findByUserId(userId);
     }
 }
